@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Connect_page">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/sound_on" />
+
+    <SeekBar
+        android:id="@+id/seekBar_Sound"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_toEndOf="@+id/imageView"
+        app:layout_constraintLeft_toRightOf="@+id/imageView" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/control_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar_Sound"
+        android:orientation="horizontal">
+
+        <android.widget.Button
+            android:id="@+id/button_сonnection"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="Конект" />
+
+        <android.widget.Button
+            android:id="@+id/button_back"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:text="Назад" />
+
+        <android.widget.Button
+            android:id="@+id/button_forward"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Вперед" />
+
+        <android.widget.ImageButton
+            android:id="@+id/button_pause"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/pause"
+            android:background="#00000000"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/touchPad"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:layout_below="@+id/control_buttons"
+        android:layout_margin="20dp"
+        android:background="@drawable/scrollview_backgound" />
+    <LinearLayout
+        android:id="@+id/control_buttons2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/touchPad"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <android.widget.Button
+            android:background="@drawable/gear"
+            android:id="@+id/button_gear"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            />
+
+        <android.widget.Button
+            android:id="@+id/button_monitor"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/svg_monitor" />
+
+        <android.widget.Button
+            android:id="@+id/button_keyboard"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="Клавиатура" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
