@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Connect_page">
+    tools:context=".Connect_page"
+    android:background="#D6D6D6"
+    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -61,7 +63,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/touchPad"
+        android:id="@+id/touch_pad"
         android:layout_width="380dp"
         android:layout_height="380dp"
         android:layout_below="@+id/control_buttons"
@@ -71,7 +73,7 @@
         android:id="@+id/control_buttons2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/touchPad"
+        android:layout_below="@+id/touch_pad"
         android:orientation="horizontal"
         android:gravity="center">
 
