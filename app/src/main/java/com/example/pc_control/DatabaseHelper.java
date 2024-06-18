@@ -73,4 +73,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return computers;
     }
+
+    public void clearAllComputers() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_COMPUTERS);
+        db.close();
+    }
 }

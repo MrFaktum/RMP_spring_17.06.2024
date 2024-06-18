@@ -1,7 +1,7 @@
 package com.example.pc_control;
 // Home.java
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
+import android.widget.PopupWindow;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiInfo;
@@ -12,13 +12,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.List;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -39,7 +46,7 @@ public class Home extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
         computerList = findViewById(R.id.computer_list);
-
+        loadComputerList();
         Button addNewDevicesButton = findViewById(R.id.Add_new_devices);
         addNewDevicesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,9 +55,60 @@ public class Home extends AppCompatActivity {
                 startScanning();
             }
         });
+
+        Button openPopupButton = findViewById(R.id.open_popup);
+        openPopupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow(v);
+            }
+        });
     }
 
+    private void showPopupWindow(View view) {
+        // Inflate the popup_layout.xml
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.home_menu, null);
+
+        // Create the PopupWindow
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        // Show the PopupWindow
+        popupWindow.showAtLocation(view, android.view.Gravity.CENTER, 0, 0);
+
+        // Set up the buttons in the PopupWindow
+        Button button1 = popupView.findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something
+                Toast.makeText(Home.this, "Кнопка 1 нажата", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+
+        Button button2 = popupView.findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something
+                Toast.makeText(Home.this, "Кнопка 2 нажата", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+
+        Button button3 = popupView.findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something
+                Toast.makeText(Home.this, "Кнопка 3 нажата", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+    }
     private void startScanning() {
+        computerList.removeAllViews();
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
@@ -89,6 +147,14 @@ public class Home extends AppCompatActivity {
 
         computerList.addView(computerItemView);
     }
+
+    private void loadComputerList() {
+        List<String> computers = dbHelper.getAllComputers();
+        for (String ip: computers) {
+            addComputerToLayout(ip);
+        }
+    }
+
     public class NetworkScanner extends AsyncTask<Void, String, List<String>> {
 
         private static final int TIMEOUT = 500;

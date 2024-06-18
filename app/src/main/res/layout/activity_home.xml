@@ -29,7 +29,7 @@
             android:layout_weight="1" />
 
         <android.widget.Button
-            android:id="@+id/menu"
+            android:id="@+id/open_popup"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/menu_line" />
@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
+
         </ScrollView>
 
         <android.widget.Button
