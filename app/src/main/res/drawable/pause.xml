@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:width="15dp"
-        android:height="70dp"
-        android:start="40dp"
-        android:drawable="@drawable/pause_color">
+        android:width="10dp"
+        android:height="50dp"
+        android:start="30dp"
+        android:drawable="@drawable/pause_color"
+        android:gravity="center_vertical">
     </item>
     <item
-        android:width="15dp"
-        android:height="70dp"
-        android:end="40dp"
+        android:width="10dp"
+        android:gravity="center_vertical"
+        android:height="50dp"
+        android:end="30dp"
         android:drawable="@drawable/pause_color">
     </item>
 </layer-list>

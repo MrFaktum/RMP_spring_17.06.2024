@@ -7,7 +7,7 @@
         android:height="40dp"
         android:drawable="@drawable/svg_plus"
         android:gravity="end|center"
-        android:right="8dp"
+        android:right="20dp"
         />
 </layer-list>
 

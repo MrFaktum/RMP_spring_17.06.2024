@@ -5,9 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Connect_page"
-    android:background="#D6D6D6"
-    >
+    tools:context=".Connect_page">
 
     <ImageView
         android:id="@+id/imageView"
@@ -34,14 +32,16 @@
             android:id="@+id/button_сonnection"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:text="Конект" />
+
+            android:background="@drawable/svg_not_working_link"/>
 
         <android.widget.Button
             android:id="@+id/button_back"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="10dp"
-            android:text="Назад" />
+            android:background="@drawable/svg_left_arrow"
+             />
 
         <android.widget.Button
             android:id="@+id/button_forward"
@@ -49,7 +49,8 @@
             android:layout_height="70dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:text="Вперед" />
+            android:background="@drawable/svg_right_arrow"
+             />
 
         <android.widget.ImageButton
             android:id="@+id/button_pause"
@@ -69,11 +70,36 @@
         android:layout_below="@+id/control_buttons"
         android:layout_margin="20dp"
         android:background="@drawable/scrollview_backgound" />
+
     <LinearLayout
         android:id="@+id/control_buttons2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/touch_pad"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <android.widget.Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="ЛКМ" />
+
+        <android.widget.Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="ПКМ" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/control_buttons3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/control_buttons2"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -88,15 +114,15 @@
             android:id="@+id/button_monitor"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
             android:background="@drawable/svg_monitor" />
 
         <android.widget.Button
             android:id="@+id/button_keyboard"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:text="Клавиатура" />
+            android:background="@drawable/svg_keyboard"/>
     </LinearLayout>
 
 
