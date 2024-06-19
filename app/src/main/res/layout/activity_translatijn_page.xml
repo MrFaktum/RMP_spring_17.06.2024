@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D6D6D6"
+    tools:context=".Translatijn_page">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/control_buttons"
+        android:gravity="center">
+
+        <android.widget.Button
+            android:id="@+id/button_pause"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/pause"/>
+
+        <android.widget.Button
+            android:id="@+id/button_back"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/svg_left_arrow"/>
+
+        <android.widget.Button
+            android:id="@+id/button_forward"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/svg_right_arrow"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <android.widget.Button
+            android:id="@+id/remote_controller"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="Пульт" />
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/sound_volume"
+        android:layout_toEndOf="@+id/control_buttons"
+        android:rotation="90"
+        />
+
+    <ImageView
+        android:id="@+id/sound_volume"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/control_buttons"
+        app:srcCompat="@drawable/sound_on" />
+    <TextView
+        android:layout_toEndOf="@+id/sound_volume"
+        android:id="@+id/screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:background="#006018" />
+
+</RelativeLayout>

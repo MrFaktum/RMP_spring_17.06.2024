@@ -5,11 +5,11 @@
         android:height="50dp"
         android:start="30dp"
         android:drawable="@drawable/pause_color"
-        android:gravity="center_vertical">
+        android:gravity="center">
     </item>
     <item
         android:width="10dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:height="50dp"
         android:end="30dp"
         android:drawable="@drawable/pause_color">
