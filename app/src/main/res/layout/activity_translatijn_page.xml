@@ -61,12 +61,16 @@
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/control_buttons"
         app:srcCompat="@drawable/sound_on" />
-    <TextView
-        android:layout_toEndOf="@+id/sound_volume"
-        android:id="@+id/screen"
+
+
+    <ImageView
+        android:id="@+id/stream_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
-        android:background="#006018" />
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toEndOf="@+id/sound_volume"
+        android:background="#006018"/>
 
 </RelativeLayout>

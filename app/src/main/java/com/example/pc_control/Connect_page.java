@@ -2,6 +2,7 @@ package com.example.pc_control;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -30,9 +31,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import android.media.AudioManager;
+import android.os.Bundle;
+import android.widget.SeekBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Connect_page extends AppCompatActivity {
 
+    private AudioManager audioManager;
     private TextView touchPad;
     private String selectedPcIp;
     private int serverPort = 12345;
@@ -62,18 +68,82 @@ public class Connect_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect_page);
 
+        Button disconnect = findViewById(R.id.disconnect);
+        disconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Connect_page.this, Home.class);
+                startActivity(intent);
+            }
+        });
+
+        Button monitor = findViewById(R.id.monitor);
+        monitor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Connect_page.this, Translatijn_page.class);
+                startActivity(intent);
+            }
+        });
+
+        Button pauseButton = findViewById(R.id.pause);
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendCommand("PLAY_PAUSE");
+            }
+        });
+
+        Button backButton = findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendCommand("PREVIOUS");
+            }
+        });
+
+        Button forwardButton = findViewById(R.id.button_forward);
+        forwardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendCommand("NEXT");
+            }
+        });
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
         selectedPcIp = getIntent().getStringExtra("IP_ADDRESS");
         Toast.makeText(Connect_page.this, selectedPcIp, Toast.LENGTH_SHORT).show();
         touchPad = findViewById(R.id.touch_pad);
+        SeekBar seekBarSound = findViewById(R.id.seekBar_Sound);
+        seekBarSound.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                try {
+                    // Преобразуйте прогресс в строку с командой VOLUME
+                    String command = "VOLUME:" + (progress / 100.0f);
+                    sendCommand(command); // Отправьте строку на компьютер
+                } catch (Exception e) {
+                    Log.e("MainActivity", "Ошибка отправки данных: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
 
         touchPad.setOnTouchListener(new View.OnTouchListener() {
-            private boolean isRightClicking = false;
+            private float lastX = 0;
+            private float lastY = 0;
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-
+                        lastX = event.getX();
+                        lastY = event.getY();
                         break;
                     case MotionEvent.ACTION_MOVE:
                         float deltaX = event.getX() - lastX;
@@ -82,13 +152,26 @@ public class Connect_page extends AppCompatActivity {
                         lastY = event.getY();
                         sendCommand("MOVE:" + deltaX + ":" + deltaY);
                         break;
-                    case MotionEvent.ACTION_UP:
-                        if (isRightClicking) {
-                            isRightClicking = false;
-                        }
-                        break;
                 }
                 return true;
+            }
+        });
+
+        Button leftButton = findViewById(R.id.leftButton);
+        Button rightButton = findViewById(R.id.rightButton);
+        leftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Connect_page.this, "Левая кнопка нажата", Toast.LENGTH_SHORT).show();
+                sendCommand("LEFT_CLICK");
+            }
+        });
+
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Connect_page.this, "Правая кнопка нажата", Toast.LENGTH_SHORT).show();
+                sendCommand("RIGHT_CLICK");
             }
         });
 

@@ -28,7 +28,7 @@
         android:orientation="horizontal">
 
         <android.widget.Button
-            android:id="@+id/button_сonnection"
+            android:id="@+id/disconnect"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/svg_not_working_link"/>
@@ -51,7 +51,7 @@
              />
 
         <android.widget.Button
-            android:id="@+id/button_pause"
+            android:id="@+id/pause"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/pause"
@@ -80,14 +80,14 @@
         android:orientation="horizontal">
 
         <android.widget.Button
-            android:id="@+id/button"
+            android:id="@+id/leftButton"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
             android:text="ЛКМ" />
 
         <android.widget.Button
-            android:id="@+id/button4"
+            android:id="@+id/rightButton"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
@@ -110,7 +110,7 @@
             android:background="@drawable/gear" />
 
         <android.widget.Button
-            android:id="@+id/button_monitor"
+            android:id="@+id/monitor"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="80dp"
