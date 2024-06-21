@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@android:color/white"
-    android:elevation="8dp">
+    android:padding="5dp"
+    android:background="@drawable/button_add_new_device_background"
+    >
 
-    <Button
-        android:id="@+id/button1"
+    <android.widget.Button
+        android:id="@+id/color_theme"
+        android:gravity="center|start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Кнопка 1" />
+        android:layout_height="70dp"
+        android:text="Тема" />
 
-    <Button
-        android:id="@+id/button2"
+    <android.widget.Button
+        android:id="@+id/delete_ip"
+        android:gravity="center|start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Кнопка 2" />
+        android:layout_height="70dp"
+        android:text="Удалить список ip" />
 
-    <Button
-        android:id="@+id/button3"
+    <android.widget.Button
+        android:id="@+id/information"
+        android:gravity="center|start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Кнопка 3" />
+        android:layout_height="70dp"
+        android:text="Информация о нас" />
+
+    <android.widget.Button
+        android:id="@+id/support"
+        android:gravity="center|start"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Поддержать нас" />
 </LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@drawable/button_add_new_device_background"
+    >
+
+    <android.widget.Button
+        android:id="@+id/rename"
+        android:gravity="center|start"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Переименовать" />
+
+    <android.widget.Button
+        android:id="@+id/remove_device"
+        android:gravity="center|start"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Удалить устройство" />
+</LinearLayout>

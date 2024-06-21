@@ -17,6 +17,15 @@
         android:theme="@style/Theme.PC_control"
         tools:targetApi="31">
         <activity
+            android:name=".menu_mouse_sensitivity_slider"
+            android:exported="false" />
+        <activity
+            android:name=".menu_for_changing_mouse_sensitivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu_device_settings"
+            android:exported="false" />
+        <activity
             android:name=".Translatijn_page"
             android:exported="false" />
         <activity
