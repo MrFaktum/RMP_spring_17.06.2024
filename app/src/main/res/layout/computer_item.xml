@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@drawable/computer_button">
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/button_add_new_device_background"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/ip_address"
@@ -28,6 +29,6 @@
         android:id="@+id/button_monitor3"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/svg_monitor"
-        android:background="#00000000" />
+        android:background="#00000000"
+        android:src="@drawable/svg_monitor" />
 </LinearLayout>
