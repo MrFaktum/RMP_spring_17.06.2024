@@ -77,32 +77,41 @@ public class Home extends AppCompatActivity {
         popupWindow.showAtLocation(view, android.view.Gravity.CENTER, 0, 0);
 
         // Set up the buttons in the PopupWindow
-        Button button1 = popupView.findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
+        Button color_theme = popupView.findViewById(R.id.color_theme);
+        color_theme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Do something
-                Toast.makeText(Home.this, "Кнопка 1 нажата", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Кнопка Тема нажата", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
 
-        Button button2 = popupView.findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
+        Button delete_ip = popupView.findViewById(R.id.delete_ip);
+        delete_ip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Do something
-                Toast.makeText(Home.this, "Кнопка 2 нажата", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Кнопка Удалить список ip нажата", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
 
-        Button button3 = popupView.findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
+        Button information = popupView.findViewById(R.id.information);
+        information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Do something
-                Toast.makeText(Home.this, "Кнопка 3 нажата", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Кнопка Информация о нас нажата", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+        Button support = popupView.findViewById(R.id.support);
+        support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something
+                Toast.makeText(Home.this, "Кнопка Поддержать нас нажата", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
