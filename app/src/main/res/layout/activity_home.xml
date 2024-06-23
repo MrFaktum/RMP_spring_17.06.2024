@@ -58,6 +58,7 @@
         </ScrollView>
 
         <android.widget.Button
+            android:textColor="#ffffff"
             android:id="@+id/Add_new_devices"
             android:layout_width="match_parent"
             android:layout_height="60dp"

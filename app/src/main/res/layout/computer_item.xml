@@ -4,14 +4,15 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:background="@drawable/button_add_new_device_background"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingStart="10dp">
 
     <TextView
         android:id="@+id/ip_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Computer 1"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="20sp" />
 
     <Space

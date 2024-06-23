@@ -11,13 +11,13 @@
         android:id="@+id/rename"
         android:gravity="center|start"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:text="Переименовать" />
 
     <android.widget.Button
         android:id="@+id/remove_device"
         android:gravity="center|start"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:text="Удалить устройство" />
 </LinearLayout>
