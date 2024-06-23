@@ -1,6 +1,8 @@
 package com.example.pc_control;
-// Home.java
+
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 import java.io.IOException;
@@ -91,8 +87,11 @@ public class Home extends AppCompatActivity {
         delete_ip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something
-                Toast.makeText(Home.this, "Кнопка Удалить список ip нажата", Toast.LENGTH_SHORT).show();
+                // Clear the database
+                dbHelper.clearAllComputers();
+                // Clear the list in the activity
+                computerList.removeAllViews();
+                Toast.makeText(Home.this, "Все компьютеры удалены", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
@@ -116,6 +115,7 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
     private void startScanning() {
         computerList.removeAllViews();
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -132,18 +132,27 @@ public class Home extends AppCompatActivity {
 
     private void updateAvailablePcsList(List<String> result) {
         for (String ipAddress : result) {
-            Log.d(TAG, "Adding computer: " + ipAddress);
-            dbHelper.addComputer(ipAddress, "Last connected time");
-            addComputerToLayout(ipAddress);
+            String deviceName = "Device: " + ipAddress;
+            Log.d(TAG, "Adding computer: " + deviceName);
+            dbHelper.addComputer(deviceName, ipAddress, "Last connected time");
+            addComputerToLayout(deviceName, ipAddress);
         }
     }
 
-    private void addComputerToLayout(final String ipAddress) {
+    private void addComputerToLayout(final String deviceName, final String ipAddress) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View computerItemView = inflater.inflate(R.layout.computer_item, computerList, false);
 
         TextView ipTextView = computerItemView.findViewById(R.id.ip_address);
-        ipTextView.setText(ipAddress);
+        ipTextView.setText(deviceName);
+
+        Button gearButton = computerItemView.findViewById(R.id.gear_button);
+        gearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDeviceSettingsMenu(v, ipAddress);
+            }
+        });
 
         computerItemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,12 +166,82 @@ public class Home extends AppCompatActivity {
         computerList.addView(computerItemView);
     }
 
+    private void showDeviceSettingsMenu(View anchorView, final String ipAddress) {
+        // Inflate the device_settings_menu layout
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.activity_menu_device_settings, null);
+
+        // Create the PopupWindow
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        // Set up the buttons in the PopupWindow
+        Button renameDeviceButton = popupView.findViewById(R.id.rename);
+        renameDeviceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRenameDeviceMenu(anchorView, ipAddress, popupWindow);
+            }
+        });
+
+        Button removeDeviceButton = popupView.findViewById(R.id.remove_device);
+        removeDeviceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.removeComputer(ipAddress);
+                loadComputerList(); // Refresh the list
+                Toast.makeText(Home.this, "Removed device: " + ipAddress, Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+
+        // Show the PopupWindow at the center of the screen
+        popupWindow.showAtLocation(anchorView.getRootView(), android.view.Gravity.CENTER, 0, 0);
+    }
+
+    private void showRenameDeviceMenu(View anchorView, final String ipAddress, final PopupWindow parentPopup) {
+        // Inflate the rename_device_menu layout
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.rename_device_menu, null);
+
+        // Create the PopupWindow
+        final PopupWindow renamePopupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        // Set up the input field and button in the PopupWindow
+        EditText renameInput = popupView.findViewById(R.id.rename_input);
+        Button confirmRenameButton = popupView.findViewById(R.id.confirm_rename);
+        confirmRenameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newName = renameInput.getText().toString().trim();
+                if (newName.length() <= 20 && !newName.isEmpty()) {
+                    dbHelper.updateComputerName(ipAddress, newName);
+                    loadComputerList(); // Refresh the list
+                    Toast.makeText(Home.this, "Renamed device to: " + newName, Toast.LENGTH_SHORT).show();
+                    renamePopupWindow.dismiss();
+                    parentPopup.dismiss();
+                } else {
+                    Toast.makeText(Home.this, "Name must be 1-20 characters long", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Show the PopupWindow at the center of the screen
+        renamePopupWindow.showAtLocation(anchorView.getRootView(), android.view.Gravity.CENTER, 0, 0);
+    }
+
     private void loadComputerList() {
+        computerList.removeAllViews(); // Clear the list before loading
         List<String> computers = dbHelper.getAllComputers();
-        for (String ip: computers) {
-            addComputerToLayout(ip);
+        for (String computer : computers) {
+            String[] parts = computer.split(" - ");
+            if (parts.length == 2) {
+                addComputerToLayout(parts[0], parts[1]);
+            }
         }
     }
+
+
+
 
     public class NetworkScanner extends AsyncTask<Void, String, List<String>> {
 

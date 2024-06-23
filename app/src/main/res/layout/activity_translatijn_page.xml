@@ -72,6 +72,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginEnd="20dp"
         android:layout_toEndOf="@+id/sound_volume"
-        android:background="#006018"/>
+        />
 
 </RelativeLayout>

@@ -82,6 +82,7 @@ public class Connect_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Connect_page.this, Translatijn_page.class);
+                intent.putExtra("IP_ADDRESS", selectedPcIp);
                 startActivity(intent);
             }
         });
