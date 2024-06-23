@@ -116,7 +116,7 @@ public class Home extends AppCompatActivity {
         });
     }
 
-    private void startScanning() {
+    private void  startScanning() {
         computerList.removeAllViews();
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
