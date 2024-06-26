@@ -134,7 +134,7 @@ public class Home extends AppCompatActivity {
         for (String ipAddress : result) {
             String deviceName = ipAddress;
             Log.d(TAG, "Adding computer: " + deviceName);
-            dbHelper.addComputer(deviceName, ipAddress, "Last connected time");
+            dbHelper.addComputer(ipAddress, ipAddress, "Last connected time");
             addComputerToLayout(deviceName, ipAddress);
         }
     }
