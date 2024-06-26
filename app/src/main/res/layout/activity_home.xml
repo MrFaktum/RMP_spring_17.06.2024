@@ -31,8 +31,7 @@
 
         <android.widget.Button
             android:id="@+id/open_popup"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            style="@style/ButtonSvgStyle"
             android:background="@drawable/menu_line" />
     </LinearLayout>
 

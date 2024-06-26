@@ -30,22 +30,19 @@
 
         <android.widget.Button
             android:id="@+id/disconnect"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/ButtonActivityConnectPageStyle"
             android:background="@drawable/svg_not_working_link"/>
 
         <android.widget.Button
             android:id="@+id/button_back"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/ButtonActivityConnectPageStyle"
             android:layout_marginStart="10dp"
             android:background="@drawable/svg_left_arrow"
              />
 
         <android.widget.Button
             android:id="@+id/button_forward"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/ButtonActivityConnectPageStyle"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/svg_right_arrow"
@@ -53,8 +50,7 @@
 
         <android.widget.Button
             android:id="@+id/pause"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/ButtonActivityConnectPageStyle"
             android:background="@drawable/pause"
             />
 
@@ -109,15 +105,13 @@
 
         <android.widget.Button
             android:id="@+id/button_gear"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/ButtonActivityConnectPageStyle"
             android:layout_marginEnd="50dp"
             android:background="@drawable/gear" />
 
         <android.widget.Button
             android:id="@+id/button_keyboard"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/ButtonActivityConnectPageStyle"
             android:background="@drawable/svg_keyboard" />
     </LinearLayout>
 </RelativeLayout>
