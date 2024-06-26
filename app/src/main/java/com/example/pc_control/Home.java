@@ -34,7 +34,7 @@ public class Home extends AppCompatActivity {
     private static final String TAG = "Home";
     private DatabaseHelper dbHelper;
     private LinearLayout computerList;
-
+    private Button addNewDevicesButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +43,12 @@ public class Home extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         computerList = findViewById(R.id.computer_list);
         loadComputerList();
-        Button addNewDevicesButton = findViewById(R.id.Add_new_devices);
+        addNewDevicesButton = findViewById(R.id.Add_new_devices);
         addNewDevicesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Home.this, "Начало поиска", Toast.LENGTH_SHORT).show();
+                addNewDevicesButton.setEnabled(false);
                 startScanning();
             }
         });
@@ -302,6 +303,7 @@ public class Home extends AppCompatActivity {
             super.onPostExecute(result);
             Toast.makeText(Home.this, "Поиск завершен", Toast.LENGTH_SHORT).show();
             updateAvailablePcsList(result);
+            addNewDevicesButton.setEnabled(true);
         }
     }
 }
