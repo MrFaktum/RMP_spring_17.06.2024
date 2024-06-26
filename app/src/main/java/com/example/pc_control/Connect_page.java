@@ -75,15 +75,6 @@ public class Connect_page extends AppCompatActivity {
             }
         });
 
-        Button monitor = findViewById(R.id.monitor);
-        monitor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Connect_page.this, Translatijn_page.class);
-                intent.putExtra("IP_ADDRESS", selectedPcIp);
-                startActivity(intent);
-            }
-        });
 
         Button pauseButton = findViewById(R.id.pause);
         pauseButton.setOnClickListener(new View.OnClickListener() {
@@ -247,7 +238,7 @@ public class Connect_page extends AppCompatActivity {
 
     private void showControlSettingsPopup(View view) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.activity_menu_control_settings, null);
+        View popupView = inflater.inflate(R.layout.activity_menu_mouse_sensitivity_slider, null);
 
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);

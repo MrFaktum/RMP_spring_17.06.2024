@@ -132,7 +132,7 @@ public class Home extends AppCompatActivity {
 
     private void updateAvailablePcsList(List<String> result) {
         for (String ipAddress : result) {
-            String deviceName = "Device: " + ipAddress;
+            String deviceName = ipAddress;
             Log.d(TAG, "Adding computer: " + deviceName);
             dbHelper.addComputer(deviceName, ipAddress, "Last connected time");
             addComputerToLayout(deviceName, ipAddress);

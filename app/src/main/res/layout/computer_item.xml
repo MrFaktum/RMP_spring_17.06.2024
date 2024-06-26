@@ -26,10 +26,4 @@
         android:layout_height="60dp"
         android:background="@drawable/gear" />
 
-    <android.widget.ImageButton
-        android:id="@+id/button_monitor3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="#00000000"
-        android:src="@drawable/svg_monitor" />
 </LinearLayout>

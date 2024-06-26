@@ -5,7 +5,7 @@
     <item
         android:width="40dp"
         android:height="40dp"
-        android:drawable="@drawable/svg_paint_brush"
+        android:drawable="@drawable/svg_pencil"
         android:gravity="end|center"
         android:right="20.5dp"
         />
