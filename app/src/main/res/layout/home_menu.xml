@@ -1,74 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#D6D6D6"
     android:orientation="vertical"
-    android:padding="5dp"
-    android:background="@drawable/button_add_new_device_background"
     >
 
-    <Space
-        android:layout_width="355dp"
-        android:layout_height="0dp"
-        />
-
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/menu_button_background"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="5dp">
+        android:background="#00000000"
+        app:cardCornerRadius="12dp">
 
-        <androidx.cardview.widget.CardView
-            style="@style/ButtonCardViewStyle"
-            app:cardCornerRadius="30dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <Space
+                android:layout_width="400dp"
+                android:layout_height="0dp" />
+
+            <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/menu_button_background"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/ButtonCardViewStyle"
+                    app:cardCornerRadius="30dp">
+
+                    <android.widget.Button
+                        android:id="@+id/red_theme_button"
+                        style="@style/ButtonSvgStyle"
+                        android:background="@drawable/svg_red_theme_button" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/ButtonCardViewStyle"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:cardCornerRadius="30dp">
+
+                    <android.widget.Button
+                        android:id="@+id/green_theme_button"
+                        style="@style/ButtonSvgStyle"
+                        android:background="@drawable/svg_green_theme" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/ButtonCardViewStyle"
+                    app:cardCornerRadius="30dp">
+
+                    <android.widget.Button
+                        android:id="@+id/blue_theme_button"
+                        style="@style/ButtonSvgStyle"
+                        android:background="@drawable/svg_blue_theme" />
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
             <android.widget.Button
-                android:id="@+id/red_theme_button"
-                style="@style/ButtonSvgStyle"
-                android:background="@drawable/svg_red_theme_button" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            style="@style/ButtonCardViewStyle"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:cardCornerRadius="30dp">
+                android:id="@+id/delete_ip"
+                style="@style/MemuButtonStyle"
+                android:background="@drawable/delete_button"
+                android:text="Удалить список ip" />
 
             <android.widget.Button
-                android:id="@+id/green_theme_button"
-                style="@style/ButtonSvgStyle"
-                android:background="@drawable/svg_green_theme" />
-        </androidx.cardview.widget.CardView>
+                android:id="@+id/information"
+                style="@style/MemuButtonStyle"
+                android:background="@drawable/information_button"
+                android:text="Информация о нас" />
 
-        <androidx.cardview.widget.CardView
-            style="@style/ButtonCardViewStyle"
-            app:cardCornerRadius="30dp">
             <android.widget.Button
-                android:id="@+id/blue_theme_button"
-                style="@style/ButtonSvgStyle"
-                android:background="@drawable/svg_blue_theme" />
-        </androidx.cardview.widget.CardView>
+                android:id="@+id/support"
+                style="@style/MemuButtonStyle"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/support_us_button"
+                android:text="Поддержать нас" />
 
-    </LinearLayout>
-
-    <android.widget.Button
-        android:id="@+id/delete_ip"
-        style="@style/MemuButtonStyle"
-        android:background="@drawable/delete_button"
-        android:text="Удалить список ip" />
-
-    <android.widget.Button
-        style="@style/MemuButtonStyle"
-        android:id="@+id/information"
-        android:text="Информация о нас"
-        android:background="@drawable/information_button"/>
-
-    <android.widget.Button
-        style="@style/MemuButtonStyle"
-        android:id="@+id/support"
-        android:layout_marginBottom="0dp"
-        android:text="Поддержать нас"
-        android:background="@drawable/support_us_button"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
