@@ -2,6 +2,7 @@ package com.example.pc_control;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.content.SharedPreferences;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.content.Context;
@@ -37,6 +38,11 @@ public class Home extends AppCompatActivity {
     private Button addNewDevicesButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
+        int themeId = sharedPreferences.getInt("theme", R.style.RedTheme); // По умолчанию - красная тема
+        setTheme(themeId);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -74,12 +80,36 @@ public class Home extends AppCompatActivity {
         popupWindow.showAtLocation(view, android.view.Gravity.CENTER, 0, 0);
 
         // Set up the buttons in the PopupWindow
-        Button color_theme = popupView.findViewById(R.id.color_theme);
-        color_theme.setOnClickListener(new View.OnClickListener() {
+        Button red_theme_button = popupView.findViewById(R.id.red_theme_button);
+        red_theme_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Do something
-                Toast.makeText(Home.this, "Кнопка Тема нажата", Toast.LENGTH_SHORT).show();
+                setThemeColor(R.color.red);
+                Toast.makeText(Home.this, "Красная тема", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+
+        // Set up the buttons in the PopupWindow
+        Button green_theme_button = popupView.findViewById(R.id.red_theme_button);
+        green_theme_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something
+                setThemeColor(R.color.green);
+                Toast.makeText(Home.this, "Зеленая тема", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+        // Set up the buttons in the PopupWindow
+        Button blue_theme_button = popupView.findViewById(R.id.red_theme_button);
+        blue_theme_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something
+                setThemeColor(R.color.blue);
+                Toast.makeText(Home.this, "Синяя тема", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
@@ -116,6 +146,26 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
+    private void setThemeColor(int colorResId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (colorResId == R.color.red) {
+            setTheme(R.style.RedTheme);
+            editor.putInt("theme", R.style.RedTheme);
+        } else if (colorResId == R.color.green) {
+            setTheme(R.style.GreenTheme);
+            editor.putInt("theme", R.style.GreenTheme);
+        } else if (colorResId == R.color.blue) {
+            setTheme(R.style.BlueTheme);
+            editor.putInt("theme", R.style.BlueTheme);
+        }
+
+        editor.apply();
+        recreate();  // Перезапуск активности для применения изменений темы
+    }
+
 
     private void  startScanning() {
         computerList.removeAllViews();

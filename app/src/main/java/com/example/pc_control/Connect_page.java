@@ -3,6 +3,7 @@ package com.example.pc_control;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -63,6 +64,11 @@ public class Connect_page extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
+        int themeId = sharedPreferences.getInt("theme", R.style.RedTheme); // По умолчанию - красная тема
+        setTheme(themeId);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect_page);
 
