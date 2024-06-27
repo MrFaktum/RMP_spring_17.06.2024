@@ -92,7 +92,7 @@ public class Home extends AppCompatActivity {
         });
 
         // Set up the buttons in the PopupWindow
-        Button green_theme_button = popupView.findViewById(R.id.red_theme_button);
+        Button green_theme_button = popupView.findViewById(R.id.green_theme_button);
         green_theme_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +103,7 @@ public class Home extends AppCompatActivity {
             }
         });
         // Set up the buttons in the PopupWindow
-        Button blue_theme_button = popupView.findViewById(R.id.red_theme_button);
+        Button blue_theme_button = popupView.findViewById(R.id.blue_theme_button);
         blue_theme_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

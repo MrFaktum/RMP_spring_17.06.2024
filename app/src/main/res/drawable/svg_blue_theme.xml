@@ -4,14 +4,14 @@
         android:width="30dp"
         android:height="60dp"
         android:start="30dp"
-        android:drawable="#805886A3"
+        android:drawable="@color/blue1"
         android:gravity="center">
     </item>
     <item
         android:width="30dp"
         android:height="60dp"
         android:end="30dp"
-        android:drawable="#5886A3"
+        android:drawable="@color/blue2"
         android:gravity="center">
     </item>
 </layer-list>
