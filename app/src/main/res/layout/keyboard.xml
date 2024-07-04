@@ -292,13 +292,6 @@
             android:text="Enter"
             android:textSize="20sp"/>
 
-        <android.widget.Button android:id="@+id/buttonBackspace"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Backspace"
-            android:textSize="20sp"/>
-
         <android.widget.Button android:id="@+id/buttonSpace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -306,6 +299,11 @@
             android:text="Space"
             android:textSize="20sp"/>
 
-
+        <android.widget.Button android:id="@+id/buttonBackspace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Backspace"
+            android:textSize="20sp"/>
     </LinearLayout>
 </LinearLayout>
