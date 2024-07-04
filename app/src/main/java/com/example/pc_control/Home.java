@@ -1,7 +1,5 @@
 package com.example.pc_control;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.content.SharedPreferences;
 import android.widget.EditText;
 import android.widget.PopupWindow;
@@ -14,19 +12,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -40,7 +34,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
-        int themeId = sharedPreferences.getInt("theme", R.style.RedTheme); // По умолчанию - красная тема
+        int themeId = sharedPreferences.getInt("theme", R.style.RedTheme);
         setTheme(themeId);
 
         super.onCreate(savedInstanceState);
@@ -69,45 +63,37 @@ public class Home extends AppCompatActivity {
     }
 
     private void showPopupWindow(View view) {
-        // Inflate the popup_layout.xml
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.home_menu, null);
 
-        // Create the PopupWindow
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
-        // Show the PopupWindow
         popupWindow.showAtLocation(view, android.view.Gravity.CENTER, 0, 0);
 
-        // Set up the buttons in the PopupWindow
         Button red_theme_button = popupView.findViewById(R.id.red_theme_button);
         red_theme_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something
+
                 setThemeColor(R.color.red);
                 Toast.makeText(Home.this, "Красная тема", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
 
-        // Set up the buttons in the PopupWindow
         Button green_theme_button = popupView.findViewById(R.id.green_theme_button);
         green_theme_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something
                 setThemeColor(R.color.green);
                 Toast.makeText(Home.this, "Зеленая тема", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
-        // Set up the buttons in the PopupWindow
         Button blue_theme_button = popupView.findViewById(R.id.blue_theme_button);
         blue_theme_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something
                 setThemeColor(R.color.blue);
                 Toast.makeText(Home.this, "Синяя тема", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
@@ -118,9 +104,7 @@ public class Home extends AppCompatActivity {
         delete_ip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Clear the database
                 dbHelper.clearAllComputers();
-                // Clear the list in the activity
                 computerList.removeAllViews();
                 Toast.makeText(Home.this, "Все компьютеры удалены", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
@@ -131,7 +115,6 @@ public class Home extends AppCompatActivity {
         information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something
                 Toast.makeText(Home.this, "Кнопка Информация о нас нажата", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
@@ -140,13 +123,11 @@ public class Home extends AppCompatActivity {
         support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something
                 Toast.makeText(Home.this, "Кнопка Поддержать нас нажата", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
     }
-
     private void setThemeColor(int colorResId) {
         SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -163,7 +144,7 @@ public class Home extends AppCompatActivity {
         }
 
         editor.apply();
-        recreate();  // Перезапуск активности для применения изменений темы
+        recreate();
     }
 
 
@@ -218,14 +199,11 @@ public class Home extends AppCompatActivity {
     }
 
     private void showDeviceSettingsMenu(View anchorView, final String ipAddress) {
-        // Inflate the device_settings_menu layout
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.activity_menu_device_settings, null);
 
-        // Create the PopupWindow
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
-        // Set up the buttons in the PopupWindow
         Button renameDeviceButton = popupView.findViewById(R.id.rename);
         renameDeviceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,25 +217,21 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dbHelper.removeComputer(ipAddress);
-                loadComputerList(); // Refresh the list
+                loadComputerList();
                 Toast.makeText(Home.this, "Removed device: " + ipAddress, Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
 
-        // Show the PopupWindow at the center of the screen
         popupWindow.showAtLocation(anchorView.getRootView(), android.view.Gravity.CENTER, 0, 0);
     }
 
     private void showRenameDeviceMenu(View anchorView, final String ipAddress, final PopupWindow parentPopup) {
-        // Inflate the rename_device_menu layout
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.rename_device_menu, null);
 
-        // Create the PopupWindow
         final PopupWindow renamePopupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
-        // Set up the input field and button in the PopupWindow
         EditText renameInput = popupView.findViewById(R.id.rename_input);
         Button confirmRenameButton = popupView.findViewById(R.id.confirm_rename);
         confirmRenameButton.setOnClickListener(new View.OnClickListener() {
@@ -266,7 +240,7 @@ public class Home extends AppCompatActivity {
                 String newName = renameInput.getText().toString().trim();
                 if (newName.length() <= 20 && !newName.isEmpty()) {
                     dbHelper.updateComputerName(ipAddress, newName);
-                    loadComputerList(); // Refresh the list
+                    loadComputerList();
                     Toast.makeText(Home.this, "Renamed device to: " + newName, Toast.LENGTH_SHORT).show();
                     renamePopupWindow.dismiss();
                     parentPopup.dismiss();
@@ -276,12 +250,12 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        // Show the PopupWindow at the center of the screen
+
         renamePopupWindow.showAtLocation(anchorView.getRootView(), android.view.Gravity.CENTER, 0, 0);
     }
 
     private void loadComputerList() {
-        computerList.removeAllViews(); // Clear the list before loading
+        computerList.removeAllViews();
         List<String> computers = dbHelper.getAllComputers();
         for (String computer : computers) {
             String[] parts = computer.split(" - ");

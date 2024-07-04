@@ -1,72 +1,36 @@
 package com.example.pc_control;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import java.io.IOException;
 import java.io.OutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Connect_page extends AppCompatActivity {
-
-    private AudioManager audioManager;
-    private TextView touchPad;
     private String selectedPcIp;
-    private int serverPort = 12345;
+    private final int serverPort = 12345;
     private static final String TAG = "Connect_page";
-    private DatabaseHelper databaseHelper;
-    private EditText ipAddressEditText;
-    private ListView computersListView;
-    private ArrayAdapter<String> adapter;
-    private List<String> computersList;
-    private Button control_settings;
     private int sensitivity = 3;
-    private float lastX = 0;
-    private float lastY = 0;
-    private boolean isLongPress = false;
-    private Handler longPressHandler = new Handler();
-    private Runnable longPressRunnable = new Runnable() {
-        @Override
-        public void run() {
-            sendCommand("RIGHT_CLICK");
-            isLongPress = true;
-        }
-    };
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
-        int themeId = sharedPreferences.getInt("theme", R.style.RedTheme); // По умолчанию - красная тема
+        int themeId = sharedPreferences.getInt("theme", R.style.RedTheme);
         setTheme(themeId);
 
         super.onCreate(savedInstanceState);
@@ -106,11 +70,9 @@ public class Connect_page extends AppCompatActivity {
             }
         });
 
-        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-
         selectedPcIp = getIntent().getStringExtra("IP_ADDRESS");
         Toast.makeText(Connect_page.this, selectedPcIp, Toast.LENGTH_SHORT).show();
-        touchPad = findViewById(R.id.touch_pad);
+        TextView touchPad = findViewById(R.id.touch_pad);
 
         SeekBar seekBarSound = findViewById(R.id.seekBar_Sound);
         seekBarSound.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -160,7 +122,6 @@ public class Connect_page extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Connect_page.this, "Левая кнопка нажата", Toast.LENGTH_SHORT).show();
                 sendCommand("LEFT_CLICK");
             }
         });
@@ -168,7 +129,6 @@ public class Connect_page extends AppCompatActivity {
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Connect_page.this, "Правая кнопка нажата", Toast.LENGTH_SHORT).show();
                 sendCommand("RIGHT_CLICK");
             }
         });
@@ -181,7 +141,7 @@ public class Connect_page extends AppCompatActivity {
             }
         });
 
-        control_settings = findViewById(R.id.button_gear);
+        Button control_settings = findViewById(R.id.button_gear);
         control_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,7 +179,6 @@ public class Connect_page extends AppCompatActivity {
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // Setup keyboard buttons
         setupKeyboardButtons(popupView);
     }
 
@@ -250,11 +209,11 @@ public class Connect_page extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         SeekBar sensitivitySeekBar = popupView.findViewById(R.id.sensitivitySeekBar);
-        sensitivitySeekBar.setProgress(sensitivity - 1); // Set initial progress based on current sensitivity
+        sensitivitySeekBar.setProgress(sensitivity - 1);
         sensitivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sensitivity = progress + 1; // Update sensitivity (1 to 10)
+                sensitivity = progress + 1;
             }
 
             @Override

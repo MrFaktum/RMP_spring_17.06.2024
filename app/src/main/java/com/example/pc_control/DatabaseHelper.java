@@ -10,10 +10,10 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "computers.db";
-    private static final int DATABASE_VERSION = 2; // Updated to 2 to trigger onUpgrade
+    private static final int DATABASE_VERSION = 2;
     private static final String TABLE_COMPUTERS = "computers";
     private static final String COLUMN_ID = "id";
-    private static final String COLUMN_DEVICE_NAME = "device_name"; // New column for device name
+    private static final String COLUMN_DEVICE_NAME = "device_name";
     private static final String COLUMN_IP_ADDRESS = "ip_address";
     private static final String COLUMN_LAST_CONNECTED = "last_connected";
 
@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_COMPUTERS_TABLE = "CREATE TABLE " + TABLE_COMPUTERS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_DEVICE_NAME + " TEXT," // Added new column
+                + COLUMN_DEVICE_NAME + " TEXT,"
                 + COLUMN_IP_ADDRESS + " TEXT UNIQUE,"
                 + COLUMN_LAST_CONNECTED + " TEXT" + ")";
         db.execSQL(CREATE_COMPUTERS_TABLE);
@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
             ContentValues values = new ContentValues();
-            values.put(COLUMN_DEVICE_NAME, deviceName); // Added device name
+            values.put(COLUMN_DEVICE_NAME, deviceName);
             values.put(COLUMN_IP_ADDRESS, ipAddress);
             values.put(COLUMN_LAST_CONNECTED, lastConnected);
             db.insert(TABLE_COMPUTERS, null, values);
@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 do {
                     String deviceName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEVICE_NAME));
                     String ipAddress = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IP_ADDRESS));
-                    computers.add(deviceName + " - " + ipAddress); // Format the output to include both device name and IP address
+                    computers.add(deviceName + " - " + ipAddress);
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateComputerName(String ipAddress, String newName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DEVICE_NAME, newName); // Ensure COLUMN_DEVICE_NAME exists in your schema
+        values.put(COLUMN_DEVICE_NAME, newName);
         db.update(TABLE_COMPUTERS, values, COLUMN_IP_ADDRESS + "=?", new String[]{ipAddress});
         db.close();
     }
